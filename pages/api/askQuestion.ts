@@ -31,7 +31,7 @@ export default async function handler(
     response = await textQuery(prompt,model)
    }
 
-
+   const imageGeneratorValue: boolean = model === 'ImageGenerator' ? true : false
 
   const message: Message = {
     text: response || "ChatGPT was unable to find an answer for that!",
@@ -40,6 +40,7 @@ export default async function handler(
         _id: "ChatGPT",
         name: "ChatGPT",
         avatar: "https://links.papareact.com/89k",
+        isImageGenerator: imageGeneratorValue
     },
 
   };
