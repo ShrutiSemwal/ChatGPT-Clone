@@ -6,10 +6,16 @@
     "start": "next start"
   },
   "dependencies": {
+    "@chengsokdara/use-whisper": "^0.2.0",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@ffmpeg/core": "^0.11.0",
     "@heroicons/react": "^2.0.15",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.14",
     "firebase": "^9.17.1",
     "firebase-admin": "^11.5.0",
-    "next": "latest",
+    "next": "^13.2.4",
     "next-auth": "^4.19.2",
     "openai": "^3.1.0",
     "react": "18.2.0",

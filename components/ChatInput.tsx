@@ -36,6 +36,7 @@ function ChatInput({chatId} : Props) {
             _id: session?.user?.email!,
             name: session?.user?.name!,
             avatar: session?.user?.image! || `https://ui-avatars.com/api/?name=${session?.user?.name}`,
+            isImageGenerator: false
 
         }
       }
@@ -47,13 +48,16 @@ function ChatInput({chatId} : Props) {
        //Toast notification to say loading
        const notification = toast.loading('ChatGPT is thinking...');
 
-       await fetch('/api/askQuestion',{
+       const isImageGenerator = (model === 'ImageGenerator' ? true : false)
+       const url = isImageGenerator ? '/api/generateImage' : '/api/askQuestion'
+
+       await fetch(url,{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body:JSON.stringify({
-            prompt:input, chatId, model, session,
+            prompt:input, chatId, model, session, isImageGenerator
 
         }),
        }).then(() => {

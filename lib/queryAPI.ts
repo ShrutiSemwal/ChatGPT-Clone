@@ -1,6 +1,6 @@
 import openai from "./chatgpt";
 
-const query = async (prompt: string, chatId:string, model:string) => {
+const textQuery = async (prompt: string, model:string) => {
 
     const res = await openai.createCompletion({
         model,
@@ -10,13 +10,27 @@ const query = async (prompt: string, chatId:string, model:string) => {
         max_tokens: 1000,
         frequency_penalty: 0,
         presence_penalty: 0,
-    }).then(res => res.data.choices[0].text)
+    }).then((res) => res.data.choices[0].text)
     .catch(
-        (err) =>
+        (err: { message: any; }) =>
          `ChatGPT was unable to find an answer for that! (Error: ${err.message})`
          );
 
          return res;
 } ;
 
-export default query;
+const imageQuery = async (prompt: string) => {
+    const res = await openai.createImage({
+        prompt,
+        n:1,
+        size: "512x512"
+    }).then((res) => res.data.data[0].url)
+    .catch(
+        (err: { message: any; }) =>
+         `ChatGPT was unable to generate an image for that! (Error: ${err.message})`
+         );
+
+         return res;
+}
+
+export {textQuery, imageQuery};

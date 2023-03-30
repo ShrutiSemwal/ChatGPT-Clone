@@ -23,7 +23,7 @@ export default async function handler(
     label: model.id,
   }));
 
-  
+  modelOptions.unshift({label:'ImageGenerator', value:'ImageGenerator'})
 
   res.status(200).json({modelOptions,});
 }
